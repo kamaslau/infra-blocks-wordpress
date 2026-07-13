@@ -10,7 +10,7 @@ Manage service stack with [Docker Compose](https://docs.docker.com/compose/).
 
 ```bash
 # Initiate .env file
-cp .env_template .env
+cp .env.example .env
 # Start services
 docker compose up -d
 ```
