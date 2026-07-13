@@ -1,16 +1,18 @@
+name: trial-wordpress
+
 volumes:
   wordpress_data:
 
 networks:
-  trial-mysql_backend:
-    external: true
+  backend:
 
 services:
   wordpress:
     container_name: wordpress
-    image: wordpress:7-php8.5
-    restart: always
-    env_file: .env
+    image: wordpress:7.0-php8.5
+    restart: unless-stopped
+    networks:
+      - backend
     ports:
       - ${PORT-80}:80
     volumes:
@@ -20,5 +22,3 @@ services:
       # - type: bind
       #   source: ./wordpress
       #   target: /var/www/html
-    networks:
-      - trial-mysql_backend

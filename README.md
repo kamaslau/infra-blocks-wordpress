@@ -1,12 +1,15 @@
 # trial-wordpress
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Repository size](https://img.shields.io/github/repo-size/kamaslau/trial-wordpress?color=56BEB8)
+
 Trial or micro-service unit of WordPress.
 
 ## Usage
 
 ### Start using docker compose
 
-Manage service stack with [Docker Compose](https://docs.docker.com/compose/).
+### Start with [Docker Compose](https://docs.docker.com/compose/)
 
 ```bash
 # Initiate .env file
@@ -15,7 +18,7 @@ cp .env.example .env
 docker compose up -d
 ```
 
-Update existing composed containers:
+Update existing composed containers with latest images:
 
 ```bash
 docker compose pull && \
