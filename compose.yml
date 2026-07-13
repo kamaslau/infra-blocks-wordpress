@@ -2,19 +2,43 @@ name: trial-wordpress
 
 volumes:
   wordpress_data:
+  wordpress_db:
 
 networks:
   backend:
 
 services:
+  db:
+    container_name: mysql
+    image: mysql:8.4
+    restart: unless-stopped
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-rootpassword}
+      MYSQL_DATABASE: ${MYSQL_DATABASE-wordpress}
+      MYSQL_USER: ${MYSQL_USER-wordpress}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD-wordpress}
+    volumes:
+      - type: volume
+        source: wordpress_db
+        target: /var/lib/mysql
+
   wordpress:
     container_name: wordpress
     image: wordpress:7.0-php8.5
     restart: unless-stopped
+    depends_on:
+      - db
     networks:
       - backend
     ports:
       - ${PORT-80}:80
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${MYSQL_USER-wordpress}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD-wordpress}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE-wordpress}
     volumes:
       - type: volume
         source: wordpress_data

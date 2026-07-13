@@ -5,6 +5,10 @@
 
 Trial or micro-service unit of WordPress.
 
+## Service URL
+
+- WordPress [http://localhost](http://localhost)
+
 ## Usage
 
 ### Start using docker compose
