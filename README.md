@@ -1,7 +1,7 @@
-# trial-wordpress
+# infra-blocks-wordpress
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![Repository size](https://img.shields.io/github/repo-size/kamaslau/trial-wordpress?color=56BEB8)
+![Repository size](https://img.shields.io/github/repo-size/kamaslau/infra-blocks-wordpress?color=56BEB8)
 
 Trial or micro-service unit of WordPress.
 
