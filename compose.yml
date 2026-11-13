@@ -9,7 +9,7 @@ networks:
 
 services:
   db:
-    container_name: mysql
+    container_name: wordpress-db
     image: mysql:8.4
     restart: unless-stopped
     networks:
@@ -23,13 +23,20 @@ services:
       - type: volume
         source: wordpress_db
         target: /var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${MYSQL_ROOT_PASSWORD-rootpassword}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   wordpress:
     container_name: wordpress
     image: wordpress:7.0-php8.5
     restart: unless-stopped
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - backend
     ports:
